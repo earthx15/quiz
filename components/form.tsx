@@ -1,7 +1,32 @@
-// import { API_URL } from "@/utils/api";
+import { API_URL } from "utils/api";
 import { Input, Button, Card, Title, Stack } from "@mantine/core";
+import { useForm } from "react-hook-form";
+import useStore from "utils/store";
+import useUsers from "utils/useuser";
+import axios from "axios";
+
 
 export default function Form() {
+  const FormRHF = () => {
+    const [open, setOpen, fetchUsers] = useStore((state) => [
+      state.open,
+      state.setOpen,
+      state.fetchUsers,
+    ]);
+
+
+  
+    async function sendData(data) {
+      try {
+        const res = await axios.post(API_URL, data);
+        setOpen(false);
+        fetchUsers();
+        reset(getInitData(false));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
   return (
     <Card withBorder shadow="xs" p="xl" bg="cyan.2">
       <Title order={1} color="blue">
@@ -12,7 +37,10 @@ export default function Form() {
         <Stack spacing={"xs"}>
           <Input.Wrapper>
             <Input.Label>First Name</Input.Label>
-            <Input />
+            <Input {...register("firstName")}
+              type="text"
+              id="firstName"
+              disabled={isSubmitting}/>
             <Input.Error>{/* Error goes here */}</Input.Error>
           </Input.Wrapper>
 

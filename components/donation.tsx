@@ -1,9 +1,13 @@
-// import { API_URL } from "../utils/api";
-// import { type Donation } from "@/utils/types";
+import { API_URL } from "utils/api"; 
+import { type Donation } from "utils/types"; 
 import { Paper, Text, Stack, Group, Title, Card } from "@mantine/core";
-import dayjs from "dayjs";
+import UserList from "utils/userlist";
 
-export default function Donation() {
+
+
+export default async function Donation() {
+  
+
   return (
     <Card withBorder shadow="xs" bg="gray.3">
       <Group mb={20}>
@@ -18,33 +22,9 @@ export default function Donation() {
         </Title>
       </Group>
       <Stack>
-        <Paper shadow="xs" p="md">
-          <Group>
-            <Text>Tom</Text>
-            <Text>Sawyer</Text>
-            <Text>tom_sawyer@gmail.com</Text>
-            <Text>10000</Text>
-            <Text>{dayjs("2023-08-26 06:17:51").format("D-MMM HH:mm:ss")}</Text>
-          </Group>
-        </Paper>
-        <Paper shadow="xs" p="md">
-          <Group>
-            <Text>Tom</Text>
-            <Text>Sawyer</Text>
-            <Text>tom_sawyer@gmail.com</Text>
-            <Text>10000</Text>
-            <Text>{dayjs("2023-08-26 06:17:51").format("D-MMM HH:mm:ss")}</Text>
-          </Group>
-        </Paper>
-        <Paper shadow="xs" p="md">
-          <Group>
-            <Text>Tom</Text>
-            <Text>Sawyer</Text>
-            <Text>tom_sawyer@gmail.com</Text>
-            <Text>10000</Text>
-            <Text>{dayjs("2023-08-26 06:17:51").format("D-MMM HH:mm:ss")}</Text>
-          </Group>
-        </Paper>
+      {users.map((user) => (
+          <UserList key={user.id} user={user} />
+        ))}
       </Stack>
     </Card>
   );
