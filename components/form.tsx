@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useStore from "utils/store";
 import useUsers from "utils/useuser";
 import axios from "axios";
+import { type Form,formSchema } from "utils/types";
 
 
 export default function Form() {
@@ -37,7 +38,7 @@ export default function Form() {
         <Stack spacing={"xs"}>
           <Input.Wrapper>
             <Input.Label>First Name</Input.Label>
-            <Input {...register("firstName")}
+            <Input 
               type="text"
               id="firstName"
               disabled={isSubmitting}/>

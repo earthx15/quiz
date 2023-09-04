@@ -1,12 +1,13 @@
+"use client";
 import { API_URL } from "utils/api"; 
 import { type Donation } from "utils/types"; 
 import { Paper, Text, Stack, Group, Title, Card } from "@mantine/core";
 import UserList from "utils/userlist";
-
+import useUsers from "utils/useuser";
 
 
 export default async function Donation() {
-  
+  const { donations, error } = useUsers(true);
 
   return (
     <Card withBorder shadow="xs" bg="gray.3">
@@ -22,8 +23,8 @@ export default async function Donation() {
         </Title>
       </Group>
       <Stack>
-      {users.map((user) => (
-          <UserList key={user.id} user={user} />
+      {donations.map((d: { time: string; id: string; firstName: string; lastName: string; email: string; amount: string; }) => (
+          <UserList key={d.id} donation={d} />
         ))}
       </Stack>
     </Card>

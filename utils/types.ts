@@ -2,7 +2,7 @@ import * as z from "zod";
 
 
 const userSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   firstName: z.string().min(1, { message: "Missing firstname" }),
   lastName: z.string().min(1, { message: "Missing lastname" }),
   email: z.string().email({ message: "Invalid email" }),
